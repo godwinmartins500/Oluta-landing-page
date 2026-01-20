@@ -1,0 +1,153 @@
+/* app/components/Problem.css */
+
+.problem-wrapper {
+  background-color: #f9f9f9;
+  padding: 60px 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.problem-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 30px;
+}
+
+.problem-title {
+  font-size: 2.4rem;
+  font-weight: 650;
+  color: #000;
+  margin: 0;
+}
+
+.problem-subtitle {
+  font-size: 1rem;
+  color: #555;
+  max-width: 800px;
+  line-height: 1.6;
+}
+
+.problem-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 1fr; /* Reduced middle column to allow better balance */
+  gap: 20px;
+  width: 100%;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.problem-image-left,
+.problem-image-right {
+  width: 100%;
+  max-width: 350px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.problem-image-left img,
+.problem-image-right img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.problem-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Reduced gap between boxes */
+  justify-content: center;
+  height: 100%; /* Make content take full height */
+}
+
+.problem-box {
+  padding: 20px; /* Slightly reduced padding */
+  border-radius: 12px;
+  font-size: 0.9rem; /* Slightly smaller font */
+  line-height: 1.4;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0; /* Remove any default margins */
+}
+
+.merchant-box {
+  background-color: #0b2c5e;
+  color: white;
+  flex: 1; /* Allow boxes to grow equally */
+}
+
+.bank-box {
+  background-color: #ff5722;
+  color: white;
+  flex: 1; /* Allow boxes to grow equally */
+}
+
+.problem-section-title {
+  margin-top: 0;
+  margin-bottom: 12px; /* Reduced margin */
+  font-size: 1.1rem; /* Slightly smaller title */
+  font-weight: 600;
+}
+
+.problem-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.problem-list li {
+  position: relative;
+  padding-left: 20px; /* Reduced padding */
+  margin-bottom: 10px; /* Reduced spacing between items */
+  font-size: 0.85rem; /* Smaller text for list items */
+}
+
+.problem-list li::before {
+  content: "○";
+  color: #fff;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translateY(-50%);
+}
+
+@media (max-width: 1024px) {
+  .problem-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+
+  .problem-image-left,
+  .problem-image-right {
+    max-width: 250px;
+  }
+  
+  .problem-content {
+    gap: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .problem-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .problem-image-left,
+  .problem-image-right {
+    order: 2;
+    max-width: 100%;
+  }
+
+  .problem-content {
+    order: 1;
+  }
+  
+  .problem-box {
+    max-width: 100%;
+  }
+}

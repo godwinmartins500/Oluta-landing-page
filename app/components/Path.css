@@ -1,0 +1,217 @@
+.path-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 60px 40px;
+  background-color: #0052cc;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  position: relative;
+  min-height: 100vh;
+}
+
+.path-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.path-title {
+  font-size: 2.4rem;
+  font-weight: 650;
+  margin: 0 0 16px 0;
+  color: white;
+}
+
+.path-subtitle {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  max-width: 700px;
+  line-height: 1.5;
+  margin: 0 auto;
+}
+
+.path-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-bottom: 40px;
+}
+
+.path-card {
+  background: white;
+  border-radius: 8px;
+  padding: 32px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.path-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.path-icon {
+  background: #004DA71A;
+  border-radius: 12px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  align-self: flex-start;
+  color: #0052cc;
+}
+
+.icon {
+  color: #0052cc;
+}
+
+.path-card-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 12px 0;
+  line-height: 1.3;
+}
+
+.path-description {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+  margin: 0 0 16px 0;
+  flex-grow: 1;
+}
+
+.path-benefits {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  margin-bottom: 16px;
+}
+
+.path-benefit {
+  font-size: 13px;
+  color: #ff5722;
+  margin: 8px 0;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+
+.checkmark-icon {
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+
+.path-learn-more {
+  display: inline-flex;
+  align-items: center;
+  color: #0052cc;
+  text-decoration: none;
+  font-size: 14px;
+  margin-top: auto;
+  transition: color 0.2s ease;
+  width: fit-content;
+}
+
+.path-learn-more:hover {
+  color: #0066ff;
+}
+
+.arrow-icon {
+  margin-left: 4px;
+  transition: transform 0.2s ease;
+}
+
+.path-learn-more:hover .arrow-icon {
+  transform: translateX(2px);
+}
+
+.path-actions {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.path-button-primary {
+  background: white;
+  color: #0052cc;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.path-button-primary:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateY(-1px);
+}
+
+.path-button-secondary {
+  background: transparent;
+  color: white;
+  border: 1px solid white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.path-button-secondary:hover {
+  background: white;
+  color: #0052cc;
+  transform: translateY(-1px);
+}
+
+.button-arrow {
+  transition: transform 0.2s ease;
+}
+
+.path-button-primary:hover .button-arrow,
+.path-button-secondary:hover .button-arrow {
+  transform: translateX(2px);
+}
+
+@media (max-width: 1200px) {
+  .path-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .path-container {
+    padding: 40px 20px;
+  }
+
+  .path-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .path-actions {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .path-button-primary,
+  .path-button-secondary {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+  }
+}
