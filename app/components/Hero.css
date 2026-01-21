@@ -175,12 +175,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 30px;
+  gap: 90px;
 }
 
 .hero-content {
   flex: 1;
   z-index: 2;
+  margin-left: -50px;
 }
 
 .hero-badge {
@@ -258,11 +259,6 @@
 
 /* Mobile Responsive */
 @media (max-width: 850px) {
-  .hero-wrapper { 
-    background-position: center; 
-    background-image: none; 
-  }
-
   .hero-nav {
     margin-top: 0;
   }
