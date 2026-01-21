@@ -16,7 +16,7 @@
 @media (min-width: 851px) {
   .hero-wrapper {
     background-image: url('/Frame 1984077905.png'); 
-    background-position: calc(100% + 800%) center;
+    background-position: calc(100% + 1000%) center;
     background-repeat: no-repeat;
     background-size: auto 100%;
   }
@@ -175,7 +175,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 90px;
+  gap: 80px;
 }
 
 .hero-content {
@@ -252,7 +252,7 @@
 
 .hero-main-image {
   width: 100%;
-  max-width: 500px;
+  max-width: 400px;
   height: auto;
   filter: drop-shadow(0 20px 40px rgba(0,0,0,0.1));
 }
