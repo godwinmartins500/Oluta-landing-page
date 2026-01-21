@@ -1,153 +1,153 @@
-import React, { useState } from 'react';
-import { ChevronDown, Play, ArrowUpRight, Menu, X } from 'lucide-react';
-import { motion } from 'framer-motion';
-import './Hero.css';
+import "./Hero.css";
+import { Menu, X, ArrowUpRight, Play } from "lucide-react";
+import { useState } from "react";
 
-const Hero: React.FC<{ openModal: () => void }> = ({ openModal }) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+const Hero = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+  /* INLINE BUTTON STYLES */
+  const primaryBtn: React.CSSProperties = {
+    background: "#1d5bd8",
+    color: "#ffffff",
+    padding: "0.9rem 1.6rem",
+    border: "none",
+    borderRadius: "8px",
+    fontWeight: 600,
+    display: "inline-flex",
+    alignItems: "center",
+    gap: "0.5rem",
+    cursor: "pointer",
+    whiteSpace: "nowrap",
   };
 
-  const handleDemoClick = () => {
-    setIsMenuOpen(false);
-    openModal();
+  const secondaryBtn: React.CSSProperties = {
+    background: "#ffffff",
+    color: "#1d5bd8",
+    padding: "0.9rem 1.6rem",
+    border: "1.5px solid #1d5bd8",
+    borderRadius: "8px",
+    fontWeight: 600,
+    display: "inline-flex",
+    alignItems: "center",
+    gap: "0.5rem",
+    cursor: "pointer",
+    whiteSpace: "nowrap",
+  };
+
+  const navBtn: React.CSSProperties = {
+    background: "#1d5bd8",
+    color: "#ffffff",
+    padding: "0.6rem 1.4rem",
+    border: "none",
+    borderRadius: "8px",
+    fontWeight: 600,
+    display: "inline-flex",
+    alignItems: "center",
+    gap: "0.4rem",
+    cursor: "pointer",
+    whiteSpace: "nowrap",
   };
 
   return (
-    <section className="hero-wrapper">
-      <div className="hero-inner">
-        {/* Navigation Bar */}
-        <nav className="hero-nav">
-          <div className="nav-logo">
-            <img 
-              src="/OLUTA LOGO@3x 1.png" 
-              alt="Oluta Logo" 
-              style={{ height: '23px', width: 'auto' }}
-            />
-          </div>
-          
-          <div className="nav-links desktop-nav">
-            <a href="#">Home</a>
-            <a href="#" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-              Featured <ChevronDown size={16} />
-            </a>
-            <a href="#" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-              How it works <ChevronDown size={16} />
-            </a>
-          </div>
-          
-          <button className="mobile-menu-btn" onClick={toggleMenu}>
-            <Menu size={24} color="#000000" />
-          </button>
-          
-          <button className="nav-cta desktop-cta" onClick={openModal}>
-            Request a demo <Play size={14} fill="white" />
-          </button>
-        </nav>
-
-        {/* Mobile Sidebar Overlay */}
-        <div 
-          className={`sidebar-overlay ${isMenuOpen ? 'active' : ''}`}
-          onClick={toggleMenu}
-        />
-
-        {/* Mobile Sidebar */}
-        <div className={`mobile-sidebar ${isMenuOpen ? 'open' : ''}`}>
-          <div className="sidebar-header">
-            <img 
-              src="/OLUTA LOGO@3x 1.png" 
-              alt="Oluta Logo" 
-              style={{ height: '23px', width: 'auto' }}
-            />
-            <button className="sidebar-close" onClick={toggleMenu}>
-              <X size={24} color="#000000" />
-            </button>
-          </div>
-
-          <nav className="sidebar-nav">
-            <a href="#" onClick={toggleMenu}>Home</a>
-            <a href="#" onClick={toggleMenu}>
-              Featured <ChevronDown size={16} />
-            </a>
-            <a href="#" onClick={toggleMenu}>
-              How it works <ChevronDown size={16} />
-            </a>
-          </nav>
-
-          <button className="sidebar-cta" onClick={handleDemoClick}>
-            Request a demo <Play size={14} fill="white" />
-          </button>
+    <header className="hero-wrapper">
+      {/* NAVBAR */}
+      <nav className="navbar">
+        <div className="nav-logo">
+          <img src="/OLUTA LOGO@3x 1.png" alt="Oluta logo" />
         </div>
 
-        {/* Hero Body Container */}
+        <ul className="nav-links">
+          <li>Home</li>
+          <li>
+            Featured <span className="arrow">▾</span>
+          </li>
+          <li>
+            How it works <span className="arrow">▾</span>
+          </li>
+        </ul>
+
+        <div className="nav-actions">
+          {/* NAV CTA */}
+          <button className="nav-cta" style={navBtn}>
+            <span style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", color: "#ffffff" }}>
+              <Play size={16} color="#ffffff" />
+              Request a demo
+            </span>
+          </button>
+
+          <button className="menu-toggle" onClick={() => setMenuOpen(true)}>
+            <Menu size={22} />
+          </button>
+        </div>
+      </nav>
+
+      {/* OVERLAY */}
+      {menuOpen && <div className="overlay" onClick={() => setMenuOpen(false)} />}
+
+      {/* SIDEBAR */}
+      <aside className={`sidebar ${menuOpen ? "open" : ""}`}>
+        <button className="close-btn" onClick={() => setMenuOpen(false)}>
+          <X size={22} />
+        </button>
+
+        <ul className="sidebar-links">
+          <li>Home</li>
+          <li>Featured</li>
+          <li>How it works</li>
+        </ul>
+
+        <button className="sidebar-cta">
+          <span style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", color: "#ffffff" }}>
+            <Play size={16} color="#ffffff" />
+            Request a demo
+          </span>
+        </button>
+      </aside>
+
+      {/* HERO */}
+      <section className="hero">
         <div className="hero-container">
-          <motion.div 
-            className="hero-content"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
-            <div className="hero-badge">
-              <img src="/OLUTA LOGO@3x 2.png" alt="Badge" style={{ width: '18px', height: '18px' }} /> Banking Infrastructure for Africa
-            </div>
-            
+          <div className="hero-content">
+            <span className="hero-eyebrow">Banking Infrastructure for Africa</span>
+
             <h1 className="hero-title">
-              Unlock <span className="text-blue">Commerce</span>. <br />
-              Enable <span className="text-blue">Growth</span>.
+              Unlock <span>Commerce.</span>
+              <br />
+              Enable <span>Growth.</span>
             </h1>
-            
+
             <p className="hero-description">
-              Oluta is the embedded commerce and financial infrastructure 
-              that transforms African banks into merchant powerhouses, 
-              enabling lending, payments, and commerce at scale.
+              Oluta is the embedded commerce and financial infrastructure that
+              transforms African banks into merchant powerhouses.
             </p>
-            
+
+            {/* HERO BUTTONS */}
             <div className="hero-buttons">
-              <a href="#" className="btn-primary">
-                Partner with us <Play size={14} fill="white" />
-              </a>
-              
-              <button 
-                className="btn-secondary" 
-                onClick={openModal}
-                style={{
-                  backgroundColor: '#0052cc',
-                  color: 'white',
-                  border: 'none',
-                  padding: '12px 22px',
-                  borderRadius: '8px',
-                  fontSize: '0.85rem',
-                  fontWeight: '600',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  cursor: 'pointer'
-                }}
-              >
-                Request a Demo <ArrowUpRight size={16} />
+              {/* PRIMARY */}
+              <button style={primaryBtn}>
+                <span style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", color: "#ffffff" }}>
+                  Partner with us
+                  <ArrowUpRight size={16} color="#ffffff" />
+                </span>
+              </button>
+
+              {/* SECONDARY */}
+              <button style={secondaryBtn}>
+                <span style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", color: "#1d5bd8" }}>
+                  <Play size={16} color="#1d5bd8" />
+                  Request a Demo
+                </span>
               </button>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div 
-            className="hero-visual-wrapper"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          >
-            <div className="hero-image-frame">
-              <img 
-                src="/Group 1000008489.png" 
-                alt="Merchant Hero" 
-                className="hero-main-image" 
-              />
-            </div>
-          </motion.div>
+          <div className="hero-image-wrapper">
+            <div className="hero-bg-shape" />
+            <img src="/Group 1000008489.png" alt="African commerce" className="hero-image" />
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </header>
   );
 };
 
