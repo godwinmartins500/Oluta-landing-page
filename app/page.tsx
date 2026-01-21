@@ -21,7 +21,7 @@ export default function Home() {
 
   return (
     <main>
-      <Hero openModal={openModal} />
+      <Hero />
       <Problem />
       <Solution openModal={openModal} />
       <Features />
