@@ -11,7 +11,7 @@
   display: flex;
   flex-direction: row;
   gap: 60px;
-  align-items: flex-start; /* Changed from center to start */
+  align-items: flex-start;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -22,8 +22,8 @@
 }
 
 .solution-title {
-  font-size: 2.4rem;
-  font-weight: 650;
+  font-size: 2.8rem; /* Slightly larger for desktop */
+  font-weight: 700;
   color: #000;
   margin: 0;
   line-height: 1.1;
@@ -34,100 +34,86 @@
 }
 
 .solution-description {
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: #555;
   line-height: 1.6;
-  margin-top: 16px;
+  margin-top: 20px;
 }
 
 .solution-buttons {
   display: flex;
+  flex-wrap: wrap; /* Allows buttons to stack if narrow */
   gap: 16px;
-  margin-top: 24px;
+  margin-top: 32px;
+}
+
+/* Shared Button Base */
+.btn-primary, .btn-secondary {
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  cursor: pointer;
 }
 
 .btn-primary {
   background-color: #0052cc;
   color: white;
   border: none;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-size: 0.875rem;
-  font-weight: 600;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: transform 0.2s;
-  cursor: pointer;
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px);
 }
 
 .btn-secondary {
   background-color: transparent;
   color: #0052cc;
   border: 1.5px solid #0052cc;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-size: 0.875rem;
-  font-weight: 600;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: transform 0.2s;
-  cursor: pointer;
 }
 
-.btn-secondary:hover {
+.btn-primary:hover, .btn-secondary:hover {
   transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 82, 204, 0.2);
 }
 
 .solution-visuals {
   display: flex;
-  flex-direction: row; /* Changed from column to row */
-  gap: 24px; /* Maintain gap between cards */
-  flex: 1;
-  max-width: 600px;
+  flex-direction: row;
+  gap: 20px;
+  flex: 1.2; /* Give more space to images */
 }
 
 .solution-card {
-  position: relative;
-  width: 50%; /* Each card takes 50% of solution-visuals container */
-  height: 400px;
+  flex: 1;
+  height: 450px;
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
 }
 
-.solution-card:hover {
-  transform: translateY(-8px);
+/* Ensure images inside cards behave correctly */
+.solution-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
-.merchant-card {
-  background: url('/Frame 1984077896.png');
-  background-size: cover;
-  background-position: center;
-}
-
-.bank-card {
-  background: url('/Frame 1984077897.png');
-  background-size: cover;
-  background-position: center;
-}
-
+/* Tablet Layout */
 @media (max-width: 1024px) {
   .solution-inner {
     flex-direction: column;
+    align-items: center;
     text-align: center;
+    gap: 40px;
   }
 
   .solution-content {
-    max-width: 100%;
+    max-width: 700px;
   }
 
   .solution-buttons {
@@ -136,31 +122,33 @@
 
   .solution-visuals {
     width: 100%;
-    flex-direction: row; /* Keep images side by side on medium screens */
-  }
-  
-  .solution-card {
-    width: calc(50% - 12px); /* Adjust for gap */
-    height: 360px;
   }
 }
 
-@media (max-width: 768px) {
+/* Mobile Layout */
+@media (max-width: 640px) {
   .solution-wrapper {
-    padding: 60px 20px;
+    padding: 40px 20px;
   }
 
   .solution-title {
-    font-size: 2rem;
+    font-size: 2.2rem;
+  }
+
+  .solution-buttons {
+    flex-direction: column; /* Stack buttons on small phones */
+  }
+
+  .btn-primary, .btn-secondary {
+    width: 100%; /* Full width buttons */
   }
 
   .solution-visuals {
-    flex-direction: column; /* Stack on mobile */
-    width: 100%;
+    flex-direction: column; /* Stack images */
   }
 
   .solution-card {
-    width: 100%; /* Full width on mobile */
-    height: 280px;
+    height: 300px; /* Shorter cards for mobile screens */
+    width: 100%;
   }
 }

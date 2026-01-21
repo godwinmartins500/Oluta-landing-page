@@ -136,8 +136,18 @@
   transition: transform 0.2s;
 }
 
-.btn-primary { background-color: #0052cc; color: white; }
-.btn-secondary { border: 1.5px solid #0052cc; color: #0052cc; }
+.btn-primary { 
+  background-color: #0052cc; 
+  color: white; 
+  border: none;
+}
+
+.btn-secondary { 
+  background-color: #0052cc; 
+  color: white; 
+  border: none;
+  cursor: pointer;
+}
 
 /* Visual Graphic */
 .hero-visual-wrapper {
@@ -170,5 +180,164 @@
     height: 280px;
     margin: 30px 0 0 0;
     margin-right: 0;
+  }
+}
+/* Mobile Menu Button */
+.mobile-menu-btn {
+  display: none;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+/* Mobile Sidebar */
+.mobile-sidebar {
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 280px;
+  height: 100vh;
+  background: white;
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 80px 20px 20px;
+  transition: right 0.3s ease;
+}
+
+.mobile-sidebar.open {
+  right: 0;
+}
+
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.mobile-nav-links a {
+  text-decoration: none;
+  color: #444;
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  transition: color 0.2s;
+}
+
+.mobile-nav-links a:hover {
+  color: #0052cc;
+}
+
+/* Overlay effect when menu is open */
+body.menu-open {
+  overflow: hidden;
+}
+
+/* Responsive adjustments */
+@media (max-width: 850px) {
+  .desktop-nav {
+    display: none;
+  }
+  
+  .mobile-menu-btn {
+    display: block;
+  }
+  
+  .nav-cta {
+    position: absolute;
+    right: 20px;
+  }
+  
+  .hero-nav {
+    justify-content: space-between;
+    width: calc(100% - 40px);
+  }
+}
+
+/* For larger screens, keep the original layout */
+@media (min-width: 851px) {
+  .mobile-menu-btn {
+    display: none;
+  }
+}
+/* Mobile CTA Button in Sidebar */
+.mobile-nav-cta {
+  background-color: #0052cc;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 10px;
+  width: 100%;
+  text-align: left;
+}
+
+.mobile-nav-cta:hover {
+  background-color: #0040a3;
+}
+/* Hide CTA button on mobile */
+@media (max-width: 850px) {
+  .desktop-cta {
+    display: none;
+  }
+  
+  .mobile-menu-btn {
+    display: block;
+  }
+  
+  .nav-cta {
+    position: absolute;
+    right: 20px;
+  }
+  
+  .hero-nav {
+    justify-content: space-between;
+    width: calc(100% - 40px);
+  }
+}
+/* Responsive buttons */
+@media (max-width: 850px) {
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .btn-primary, .btn-secondary {
+    width: 100%;
+    max-width: 250px;
+    justify-content: center;
+  }
+  
+  .desktop-cta {
+    display: none;
+  }
+  
+  .mobile-menu-btn {
+    display: block;
+  }
+  
+  .nav-cta {
+    position: absolute;
+    right: 20px;
+  }
+  
+  .hero-nav {
+    justify-content: space-between;
+    width: calc(100% - 40px);
+  }
+}
+
+/* For larger screens, keep the original layout */
+@media (min-width: 851px) {
+  .mobile-menu-btn {
+    display: none;
   }
 }

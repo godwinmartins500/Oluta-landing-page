@@ -1,51 +1,114 @@
 // app/components/Solution.tsx
 import React from 'react';
 import { Play, ArrowUpRight } from 'lucide-react';
+import { motion, Variants } from 'framer-motion';
 import './Solution.css';
 
-const Solution: React.FC = () => {
+const Solution: React.FC<{ openModal: () => void }> = ({ openModal }) => {
+  // 1. Define types for the variants to prevent TypeScript errors
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const textVariants: Variants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.6, ease: "easeOut" }
+    }
+  };
+
+  const cardVariants: Variants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut" }
+    }
+  };
+
   return (
     <section className="solution-wrapper">
-      <div className="solution-inner">
+      <motion.div 
+        className="solution-inner"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={containerVariants}
+      >
         <div className="solution-content">
-          <h2 className="solution-title">
+          <motion.h2 variants={textVariants} className="solution-title">
             The Oluta <span className="solution-highlight">Solution</span>
-          </h2>
-          <p className="solution-description">
+          </motion.h2>
+          
+          <motion.p variants={textVariants} className="solution-description">
             Oluta is a turnkey, white-label merchant banking platform that banks deploy in 90 days—not 2-3 years. We solve both problems simultaneously.
-          </p>
-          <div className="solution-buttons">
-            <a href="#" className="btn-primary">
+          </motion.p>
+          
+          <motion.div variants={textVariants} className="solution-buttons">
+            <motion.a 
+              href="#" 
+              className="btn-primary"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
               Partner with us <Play size={14} fill="white" />
-            </a>
-            <a href="#" className="btn-secondary">
+            </motion.a>
+
+            {/* Preserving your inline styles exactly as requested */}
+            <motion.a 
+              href="#" 
+              className="btn-secondary" 
+              onClick={(e) => { e.preventDefault(); openModal(); }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              style={{
+                backgroundColor: '#0052cc',
+                color: 'white',
+                border: 'none',
+                padding: '12px 24px',
+                borderRadius: '8px',
+                fontSize: '0.875rem',
+                fontWeight: '600',
+                textDecoration: 'none',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                transition: 'transform 0.2s',
+                cursor: 'pointer'
+              }}
+            >
               Request a Demo <ArrowUpRight size={16} />
-            </a>
-          </div>
+            </motion.a>
+          </motion.div>
         </div>
 
         <div className="solution-visuals">
-          <div className="solution-card merchant-card">
+          <motion.div 
+            className="solution-card merchant-card"
+            variants={cardVariants}
+            whileHover={{ y: -10 }}
+          >
             <img src="/Frame 1984077896.png" alt="Merchant handling goods" />
-            {/* <div className="card-content">
-              <h3 className="card-title">For Merchants</h3>
-              <p className="card-text">
-                Free commerce tools and instant access to working capital through their trusted bank relationship.
-              </p>
-            </div> */}
-          </div>
+          </motion.div>
 
-          <div className="solution-card bank-card">
+          <motion.div 
+            className="solution-card bank-card"
+            variants={cardVariants}
+            whileHover={{ y: -10 }}
+          >
             <img src="/Frame 1984077897.png" alt="Bank building" />
-            {/* <div className="card-content">
-              <h3 className="card-title">For Banks</h3>
-              <p className="card-text">
-                Fully customizable merchant banking app that banks white-label as their own product. Deploy in 90 days instead of 2-3 years.
-              </p>
-            </div> */}
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

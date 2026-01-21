@@ -1,7 +1,9 @@
+// app/components/Features.tsx
 'use client';
 
 import { useState } from 'react';
 import { Zap, ChevronLeft, ChevronRight } from 'lucide-react';
+import { motion, Variants } from 'framer-motion'; // Added Variants
 import './Features.css';
 
 const Features = () => {
@@ -28,7 +30,6 @@ const Features = () => {
     }
   ];
 
-  // Add carousel state and handlers
   const [currentIndex, setCurrentIndex] = useState(0);
   
   const nextSlide = () => {
@@ -39,43 +40,90 @@ const Features = () => {
     setCurrentIndex((prev) => (prev - 1 + features.length) % features.length);
   };
 
+  // 1. Container variants for staggering the grid cards
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  // 2. Individual card variants
+  const cardVariants: Variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" }
+    }
+  };
+
   return (
-    <div className="features-container">
+    <motion.div 
+      className="features-container"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+      variants={containerVariants}
+    >
       <div className="features-header">
-        <h1 className="features-title">
+        <motion.h1 variants={cardVariants} className="features-title">
           Core <span className="features-title-highlight">Features</span>
-        </h1>
+        </motion.h1>
+        
         <div className="subtitle-and-nav">
-          <div className="subtitle-wrapper">
+          <motion.div variants={cardVariants} className="subtitle-wrapper">
             <p className="features-subtitle">
               Oluta delivers ten core features grouped into three layers: Bank Infrastructure, Merchant Operating System,
               and Consumer Marketplace.
             </p>
-          </div>
-          <div className="direction-nav">
+          </motion.div>
+          
+          <motion.div variants={cardVariants} className="direction-nav">
             <button className="direction-nav-button" onClick={prevSlide}>
               <ChevronLeft size={20} />
             </button>
             <button className="direction-nav-button" onClick={nextSlide}>
               <ChevronRight size={20} />
             </button>
-          </div>
+          </motion.div>
         </div>
       </div>
 
-      <div className="features-grid">
+      <motion.div 
+        className="features-grid"
+        variants={containerVariants}
+      >
         {features.map((feature, index) => (
-          <div key={index} className="feature-card">
-            <div className="feature-icon">
+          <motion.div 
+            key={index} 
+            className="feature-card"
+            variants={cardVariants}
+            whileHover={{ 
+              y: -8, 
+              backgroundColor: "#fcfcfc",
+              boxShadow: "0 10px 30px rgba(0,0,0,0.05)" 
+            }}
+            transition={{ type: "spring", stiffness: 400, damping: 17 }}
+          >
+            <motion.div 
+              className="feature-icon"
+              initial={{ rotate: -10 }}
+              whileHover={{ rotate: 0, scale: 1.1 }}
+            >
               <Zap size={24} />
-            </div>
+            </motion.div>
             <h3 className="feature-title">{feature.title}</h3>
             <p className="feature-description">{feature.description}</p>
             <p className="feature-tagline">{feature.tagline}</p>
-          </div>
+          </motion.div>
         ))}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 
