@@ -10,6 +10,11 @@ const Hero: React.FC<{ openModal: () => void }> = ({ openModal }) => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const handleDemoClick = () => {
+    setIsMenuOpen(false);
+    openModal();
+  };
+
   return (
     <section className="hero-wrapper">
       <div className="hero-inner">
@@ -23,7 +28,6 @@ const Hero: React.FC<{ openModal: () => void }> = ({ openModal }) => {
             />
           </div>
           
-          {/* Desktop Navigation Links */}
           <div className="nav-links desktop-nav">
             <a href="#">Home</a>
             <a href="#" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
@@ -34,40 +38,50 @@ const Hero: React.FC<{ openModal: () => void }> = ({ openModal }) => {
             </a>
           </div>
           
-          {/* Mobile Menu Button */}
-          <div className="mobile-menu-btn" onClick={toggleMenu}>
-            {isMenuOpen ? <X size={24} color="#000000" /> : <Menu size={24} color="#000000" />}
-          </div>
+          <button className="mobile-menu-btn" onClick={toggleMenu}>
+            <Menu size={24} color="#000000" />
+          </button>
           
-          {/* CTA Button - visible only on desktop */}
           <button className="nav-cta desktop-cta" onClick={openModal}>
             Request a demo <Play size={14} fill="white" />
           </button>
         </nav>
 
-        {/* Mobile Sidebar Menu */}
+        {/* Mobile Sidebar Overlay */}
+        <div 
+          className={`sidebar-overlay ${isMenuOpen ? 'active' : ''}`}
+          onClick={toggleMenu}
+        />
+
+        {/* Mobile Sidebar */}
         <div className={`mobile-sidebar ${isMenuOpen ? 'open' : ''}`}>
-          <div className="mobile-nav-links">
-            <a href="#" onClick={() => setIsMenuOpen(false)}>Home</a>
-            <a href="#" onClick={() => setIsMenuOpen(false)} style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-              Featured <ChevronDown size={16} />
-            </a>
-            <a href="#" onClick={() => setIsMenuOpen(false)} style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-              How it works <ChevronDown size={16} />
-            </a>
-            <button 
-              className="mobile-nav-cta" 
-              onClick={() => {
-                openModal();
-                setIsMenuOpen(false);
-              }}
-            >
-              Request a demo <Play size={14} fill="white" />
+          <div className="sidebar-header">
+            <img 
+              src="/OLUTA LOGO@3x 1.png" 
+              alt="Oluta Logo" 
+              style={{ height: '23px', width: 'auto' }}
+            />
+            <button className="sidebar-close" onClick={toggleMenu}>
+              <X size={24} color="#000000" />
             </button>
           </div>
+
+          <nav className="sidebar-nav">
+            <a href="#" onClick={toggleMenu}>Home</a>
+            <a href="#" onClick={toggleMenu}>
+              Featured <ChevronDown size={16} />
+            </a>
+            <a href="#" onClick={toggleMenu}>
+              How it works <ChevronDown size={16} />
+            </a>
+          </nav>
+
+          <button className="sidebar-cta" onClick={handleDemoClick}>
+            Request a demo <Play size={14} fill="white" />
+          </button>
         </div>
 
-        {/* Body Container */}
+        {/* Hero Body Container */}
         <div className="hero-container">
           <motion.div 
             className="hero-content"
@@ -94,6 +108,7 @@ const Hero: React.FC<{ openModal: () => void }> = ({ openModal }) => {
               <a href="#" className="btn-primary">
                 Partner with us <Play size={14} fill="white" />
               </a>
+              
               <button 
                 className="btn-secondary" 
                 onClick={openModal}
@@ -104,7 +119,11 @@ const Hero: React.FC<{ openModal: () => void }> = ({ openModal }) => {
                   padding: '12px 22px',
                   borderRadius: '8px',
                   fontSize: '0.85rem',
-                  fontWeight: '600'
+                  fontWeight: '600',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  cursor: 'pointer'
                 }}
               >
                 Request a Demo <ArrowUpRight size={16} />
@@ -118,7 +137,13 @@ const Hero: React.FC<{ openModal: () => void }> = ({ openModal }) => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           >
-            <div className="hero-circle-mask"></div>
+            <div className="hero-image-frame">
+              <img 
+                src="/Group 1000008489.png" 
+                alt="Merchant Hero" 
+                className="hero-main-image" 
+              />
+            </div>
           </motion.div>
         </div>
       </div>
