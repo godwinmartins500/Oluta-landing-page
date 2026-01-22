@@ -68,6 +68,18 @@
   cursor: pointer;
 }
 
+/* NAV DEMO BUTTON */
+.nav-demo-btn {
+  background: #1d5bd8;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.4rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
 /* Mobile menu button */
 .menu-toggle {
   display: none;
@@ -118,11 +130,16 @@
   flex-direction: column;
   gap: 1.5rem;
   font-weight: 500;
-  margin-bottom: auto;
+  margin-bottom: 1.5rem;
 }
 
 .sidebar-links li {
   cursor: pointer;
+}
+
+.sidebar-logo img {
+  height: 32px;
+  margin-bottom: 2rem;
 }
 
 .sidebar-cta {
@@ -245,6 +262,11 @@
     display: none;
   }
 
+  /* Hide nav demo button on mobile */
+  .nav-demo-btn {
+    display: none;
+  }
+
   /*  Show hamburger */
   .menu-toggle {
     display: inline-flex;
@@ -261,5 +283,9 @@
 
   .hero-bg-shape {
     display: none;
+  }
+
+  .hero-demo-btn {
+    display: none !important;
   }
 }

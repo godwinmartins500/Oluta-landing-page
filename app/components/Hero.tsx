@@ -1,9 +1,11 @@
 import "./Hero.css";
 import { Menu, X, ArrowUpRight, Play } from "lucide-react";
 import { useState } from "react";
+import ModalForm from "./ModalForm";
 
 const Hero = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   /* INLINE BUTTON STYLES */
   const primaryBtn: React.CSSProperties = {
@@ -67,14 +69,12 @@ const Hero = () => {
         </ul>
 
         <div className="nav-actions">
-          {/* NAV CTA */}
-          <button className="nav-cta" style={navBtn}>
+          <button className="nav-demo-btn" onClick={() => setIsModalOpen(true)}>
             <span style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", color: "#ffffff" }}>
               <Play size={16} color="#ffffff" />
               Request a demo
             </span>
           </button>
-
           <button className="menu-toggle" onClick={() => setMenuOpen(true)}>
             <Menu size={22} />
           </button>
@@ -90,13 +90,17 @@ const Hero = () => {
           <X size={22} />
         </button>
 
+        <div className="sidebar-logo">
+          <img src="/OLUTA LOGO@3x 1.png" alt="Oluta logo" />
+        </div>
+
         <ul className="sidebar-links">
           <li>Home</li>
           <li>Featured</li>
           <li>How it works</li>
         </ul>
 
-        <button className="sidebar-cta">
+        <button className="sidebar-cta" onClick={() => setIsModalOpen(true)}>
           <span style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", color: "#ffffff" }}>
             <Play size={16} color="#ffffff" />
             Request a demo
@@ -132,7 +136,7 @@ const Hero = () => {
               </button>
 
               {/* SECONDARY */}
-              <button style={secondaryBtn}>
+              <button className="hero-demo-btn" style={secondaryBtn} onClick={() => setIsModalOpen(true)}>
                 <span style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", color: "#1d5bd8" }}>
                   <Play size={16} color="#1d5bd8" />
                   Request a Demo
@@ -147,6 +151,9 @@ const Hero = () => {
           </div>
         </div>
       </section>
+
+      {/* MODAL */}
+      {isModalOpen && <ModalForm onClose={() => setIsModalOpen(false)} />}
     </header>
   );
 };
