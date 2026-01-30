@@ -49,7 +49,7 @@ const Footer: React.FC = () => {
           {/* Logo and Contact Section */}
           <motion.div className="footer-section" variants={itemVariants}>
             <div className="footer-logo">
-              <img src="/OLUTA LOGO@3x 1.png" alt="Oluta" className="logo-image" />
+              <img src="./OLUTA STANBIC 3.png" alt="Oluta" className="logo-image" />
             </div>
             <div className="footer-contact">
               <h3 className="contact-title">Reach us via</h3>
@@ -93,7 +93,7 @@ const Footer: React.FC = () => {
             <motion.a 
               variants={socialHover}
               whileHover="hover"
-              href="https://facebook.com" 
+              href="" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="social-link"
@@ -103,7 +103,7 @@ const Footer: React.FC = () => {
             <motion.a 
               variants={socialHover}
               whileHover="hover"
-              href="https://instagram.com" 
+              href="" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="social-link"
@@ -113,7 +113,7 @@ const Footer: React.FC = () => {
             <motion.a 
               variants={socialHover}
               whileHover="hover"
-              href="https://telegram.org" 
+              href="" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="social-link"
